@@ -2615,11 +2615,11 @@ u {
 
 @media (min-width: 48rem) {
   .text-component__block--left,
-.text-component__block--right {
+  .text-component__block--right {
     width: 45%;
   }
   .text-component__block--left img,
-.text-component__block--right img {
+  .text-component__block--right img {
     width: 100%;
   }
   .text-component__block--left {
@@ -12352,6 +12352,421 @@ mark {
 /*! purgecss start ignore */
 /* -------------------------------- 
 
+File#: _1_anim-menu-btn
+Title: Animated Menu Button
+Descr: A menu button w/ a morphing icon
+Usage: codyhouse.co/license
+
+-------------------------------- */
+:root {
+  --anim-menu-btn-size: 48px;
+  --anim-menu-btn-transition-duration: .2s;
+  --anim-menu-btn-icon-size: 32px;
+  --anim-menu-btn-icon-stroke: 2px;
+}
+
+.anim-menu-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--anim-menu-btn-size);
+  height: var(--anim-menu-btn-size);
+}
+
+.anim-menu-btn__icon {
+  position: relative;
+  display: block;
+  font-size: var(--anim-menu-btn-icon-size);
+  width: 1em;
+  height: var(--anim-menu-btn-icon-stroke);
+  color: inherit;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  transform: scale(1);
+}
+.anim-menu-btn__icon::before, .anim-menu-btn__icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: inherit;
+  border-radius: inherit;
+}
+
+.anim-menu-btn__icon--close {
+  background-size: 100% 100%;
+  will-change: transform, background-size;
+  transition-property: transform, background-size;
+  transition-duration: var(--anim-menu-btn-transition-duration, 0.2s);
+}
+.anim-menu-btn:active .anim-menu-btn__icon--close {
+  transform: scale(0.9);
+}
+.anim-menu-btn__icon--close::before, .anim-menu-btn__icon--close::after {
+  will-change: inherit;
+  transition: inherit;
+}
+.anim-menu-btn__icon--close::before {
+  transform: translateY(-0.25em) rotate(0);
+}
+.anim-menu-btn__icon--close::after {
+  transform: translateY(0.25em) rotate(0);
+}
+
+.anim-menu-btn--state-b .anim-menu-btn__icon--close {
+  background-size: 0% 100%;
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--close::before {
+  transform: translateY(0) rotate(45deg);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--close::after {
+  transform: translateY(0) rotate(-45deg);
+}
+
+.anim-menu-btn__icon--arrow-left,
+.anim-menu-btn__icon--arrow-right,
+.anim-menu-btn__icon--arrow-up,
+.anim-menu-btn__icon--arrow-down {
+  border-radius: 50em;
+  will-change: transform;
+  transition-property: transform;
+  transition-duration: var(--anim-menu-btn-transition-duration, 0.2s);
+}
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-left,
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-right,
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-up,
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-down {
+  transform: scale(0.9);
+}
+.anim-menu-btn__icon--arrow-left::before, .anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn__icon--arrow-down::before,
+.anim-menu-btn__icon--arrow-down::after {
+  transform-origin: calc(var(--anim-menu-btn-icon-stroke) / 2) 50%;
+  will-change: transform, width;
+  transition-property: transform, width;
+  transition-duration: var(--anim-menu-btn-transition-duration, 0.2s);
+}
+.anim-menu-btn__icon--arrow-left::before,
+.anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn__icon--arrow-down::before {
+  transform: translateY(-0.25em) rotate(0);
+}
+.anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn__icon--arrow-down::after {
+  transform: translateY(0.25em) rotate(0);
+}
+
+.anim-menu-btn__icon--arrow-right {
+  transform: rotate(180deg);
+}
+.anim-menu-btn:active .anim-menu-btn__icon--arrow-right {
+  transform: rotate(180deg) scale(0.9);
+}
+
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::before, .anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::after {
+  width: 50%;
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::before,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::before {
+  transform: translateY(0) rotate(-45deg);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-left::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-right::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up::after,
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down::after {
+  transform: translateY(0) rotate(45deg);
+}
+.anim-menu-btn--state-b:active .anim-menu-btn__icon--arrow-up {
+  transform: rotate(90deg) scale(0.9);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-up {
+  transform: rotate(90deg);
+}
+.anim-menu-btn--state-b:active .anim-menu-btn__icon--arrow-down {
+  transform: rotate(-90deg) scale(0.9);
+}
+.anim-menu-btn--state-b .anim-menu-btn__icon--arrow-down {
+  transform: rotate(-90deg);
+}
+
+/* -------------------------------- 
+
+File#: _1_circle-loader
+Title: Circle Loader
+Descr: A collection of animated circle loaders
+Usage: codyhouse.co/license
+
+-------------------------------- */
+:root {
+  --circle-loader-v1-size: 48px;
+  --circle-loader-v1-stroke-width: 4px;
+  --circle-loader-v2-size: 64px;
+  --circle-loader-v2-stroke-width: 2;
+  --circle-loader-v3-size: 64px;
+  --circle-loader-v4-size: 48px;
+  --circle-loader-v5-size: 64px;
+  --circle-loader-v6-size: 48px;
+}
+
+.circle-loader {
+  position: relative;
+  display: inline-block;
+}
+
+@supports (animation-name: this) {
+  .circle-loader__label {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+            clip-path: inset(50%);
+  }
+}
+@supports (animation-name: this) {
+  .circle-loader--v1 {
+    transform: rotate(45deg);
+    will-change: transform;
+    animation: circle-loader-1 0.75s infinite var(--ease-in-out);
+  }
+  .circle-loader--v1 .circle-loader__circle {
+    width: var(--circle-loader-v1-size);
+    height: var(--circle-loader-v1-size);
+    border-width: var(--circle-loader-v1-stroke-width);
+    border-style: solid;
+    border-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2);
+    border-radius: 50%;
+  }
+  .circle-loader--v1 .circle-loader__circle::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-width: inherit;
+    border-style: inherit;
+    border-color: transparent;
+    border-top-color: var(--color-primary);
+    border-radius: inherit;
+  }
+}
+@keyframes circle-loader-1 {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+@supports (animation-name: this) {
+  .circle-loader--v2 {
+    will-change: transform;
+    animation: circle-loader-spinning-main 1.4s infinite linear;
+  }
+  .circle-loader--v2 .circle-loader__svg {
+    display: block;
+    width: var(--circle-loader-v2-size);
+    height: var(--circle-loader-v2-size);
+    color: var(--color-primary);
+  }
+  .circle-loader--v2 .circle-loader__svg > * {
+    stroke-width: var(--circle-loader-v2-stroke-width);
+  }
+  .circle-loader--v2 .circle-loader__base {
+    opacity: 0.2;
+  }
+  .circle-loader--v2 .circle-loader__fill {
+    stroke-linecap: round;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 90 120;
+    transform-origin: 50% 50%;
+    transform: rotate(45deg);
+    animation: circle-loader-dash 1.4s infinite;
+  }
+}
+@keyframes circle-loader-dash {
+  0%, 20% {
+    stroke-dashoffset: 0;
+    transform: rotate(0);
+  }
+  50%, 70% {
+    stroke-dashoffset: 80;
+    transform: rotate(270deg);
+  }
+  100% {
+    stroke-dashoffset: 0;
+    transform: rotate(360deg);
+  }
+}
+@keyframes circle-loader-spinning-main {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@supports (animation-name: this) {
+  .circle-loader--v3 {
+    width: var(--circle-loader-v3-size);
+    height: var(--circle-loader-v3-size);
+  }
+  .circle-loader--v3 .circle-loader__circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    transform: scale(0);
+    opacity: 0.8;
+    will-change: transform, opacity;
+    animation: circle-loader-3 1.2s infinite;
+  }
+  .circle-loader--v3 .circle-loader__circle--2nd {
+    animation-delay: 0.6s;
+  }
+}
+@keyframes circle-loader-3 {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@supports (animation-name: this) {
+  .circle-loader--v4 {
+    width: var(--circle-loader-v4-size);
+    height: var(--circle-loader-v4-size);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .circle-loader--v4 .circle-loader__mask,
+  .circle-loader--v4 .circle-loader__circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+  .circle-loader--v4 .circle-loader__mask {
+    -webkit-clip-path: circle(calc(0.5 * var(--circle-loader-v4-size)));
+            clip-path: circle(calc(0.5 * var(--circle-loader-v4-size)));
+  }
+  .circle-loader--v4 .circle-loader__circle--1st {
+    background-color: var(--color-contrast-low);
+  }
+  .circle-loader--v4 .circle-loader__circle--2nd {
+    background-color: var(--color-primary);
+    will-change: transform;
+    transform-origin: 50% 100%;
+    animation: circle-loader-4 1.2s infinite cubic-bezier(0.23, 0.9, 0.75, 0.1);
+    transform: translateX(-100%);
+  }
+}
+@keyframes circle-loader-4 {
+  to {
+    transform: translateX(100%);
+  }
+}
+@supports (animation-name: this) {
+  .circle-loader--v5 {
+    font-size: var(--circle-loader-v5-size);
+    width: 1em;
+    height: 1em;
+  }
+  .circle-loader--v5 .circle-loader__label {
+    font-size: 1rem;
+  }
+  .circle-loader--v5 .circle-loader__ball {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 0.140625em);
+    width: 0.28125em;
+    height: 0.28125em;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    animation: circle-loader-5-ball 0.8s infinite;
+  }
+  .circle-loader--v5 .circle-loader__shadow {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 0.15625em);
+    width: 0.3125em;
+    height: 0.3125em;
+    background-color: var(--color-contrast-lower);
+    border-radius: 50%;
+    transform: scaleY(0.4) scaleX(1.2);
+    animation: circle-loader-5-shadow 0.8s infinite;
+  }
+}
+@keyframes circle-loader-5-ball {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.61, 0.12, 0.85, 0.4);
+  }
+  50% {
+    transform: translateY(0.5625em);
+    animation-timing-function: cubic-bezier(0.12, 0.59, 0.46, 0.95);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes circle-loader-5-shadow {
+  0% {
+    transform: scaleY(0.4) scaleX(1.2);
+    background-color: var(--color-contrast-lower);
+    animation-timing-function: cubic-bezier(0.61, 0.12, 0.85, 0.4);
+  }
+  50% {
+    transform: scaleY(0.2) scaleX(0.6);
+    background-color: var(--color-contrast-low);
+    animation-timing-function: cubic-bezier(0.12, 0.59, 0.46, 0.95);
+  }
+  100% {
+    transform: scaleY(0.4) scaleX(1.2);
+    background-color: var(--color-contrast-lower);
+  }
+}
+@supports (animation-name: this) {
+  .circle-loader--v6 .circle-loader__svg {
+    display: block;
+    width: var(--circle-loader-v6-size);
+    height: var(--circle-loader-v6-size);
+    color: var(--color-primary);
+  }
+  .circle-loader--v6 .circle-loader__fill {
+    stroke-width: 8px;
+    stroke-dashoffset: 35;
+    stroke-dasharray: 36 36;
+    animation: circle-loader-6 1.5s infinite;
+  }
+}
+@keyframes circle-loader-6 {
+  0%, 100% {
+    stroke-dashoffset: 35;
+  }
+  50% {
+    stroke-dashoffset: -35;
+  }
+}
+/* -------------------------------- 
+
 File#: _1_list
 Title: List
 Descr: Custom list component
@@ -12486,3 +12901,301 @@ Usage: codyhouse.co/license
 }
 
 /* #endregion */
+/* -------------------------------- 
+
+File#: _2_autocomplete
+Title: Autocomplete
+Descr: Autocomplete plugin for input elements
+Usage: codyhouse.co/license
+
+-------------------------------- */
+:root {
+  --autocomplete-dropdown-vertical-gap: 4px; /* gap between input and results list */
+  --autocomplete-dropdown-max-height: 150px;
+  --autocomplete-dropdown-scrollbar-width: 6px; /* custom scrollbar width - webkit browsers */
+}
+
+.autocomplete__loader { /* loader visible while searching */
+  /* CSS variables inherited from the circle-loader component */
+  --circle-loader-v1-size: 1em;
+  --circle-loader-v1-stroke-width: 2px;
+}
+
+.autocomplete:not(.autocomplete--searching) .autocomplete__loader {
+  /* .autocomplete--searching is used to show the loader element - added in JS */
+  display: none;
+}
+
+/* results dropdown  */
+.autocomplete__results {
+  position: absolute;
+  z-index: var(--z-index-popover, 5);
+  width: 100%;
+  left: 0;
+  top: calc(100% + var(--autocomplete-dropdown-vertical-gap));
+  transform: translateY(4px); /* slide in animation */
+  background-color: var(--color-bg-light);
+  box-shadow: var(--inner-glow), var(--shadow-md);
+  border-radius: var(--radius-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0s 0.3s, transform 0.3s var(--ease-in);
+  overflow: hidden;
+}
+.autocomplete--results-visible .autocomplete__results {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+  transform: translateY(0);
+}
+
+.autocomplete__list {
+  max-height: var(--autocomplete-dropdown-max-height);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  /* custom scrollbar */
+}
+.autocomplete__list::-webkit-scrollbar { /* scrollbar width */
+  width: var(--autocomplete-dropdown-scrollbar-width);
+}
+.autocomplete__list::-webkit-scrollbar-track { /* progress bar */
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.08);
+  border-radius: 0;
+}
+.autocomplete__list::-webkit-scrollbar-thumb { /* handle */
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.12);
+  border-radius: 0;
+}
+.autocomplete__list::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.2);
+}
+
+/* single result item */
+.autocomplete__item {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.autocomplete__item:hover {
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.075);
+}
+.autocomplete__item:focus {
+  outline: none;
+  background-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.15);
+}
+
+/* -------------------------------- 
+
+File#: _3_drop-menu
+Title: Drop Menu
+Descr: An animated dropdown navigation
+Usage: codyhouse.co/license
+
+-------------------------------- */
+.drop-menu {
+  --drop-menu-item-height: 40px;
+  --drop-menu-gap-y: 4px;
+  --drop-menu-transition-duration: .3s;
+  --drop-menu-width-desktop: 300px;
+  display: inline-block;
+  background-color: var(--color-bg-light);
+  box-shadow: var(--inner-glow), var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  z-index: var(--z-index-fixed-element, 10);
+  pointer-events: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateY(10px);
+  transform-origin: center top;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--drop-menu-transition-duration), visibility 0s var(--drop-menu-transition-duration), transform var(--drop-menu-transition-duration) var(--ease-out);
+}
+.drop-menu::before {
+  display: none;
+  content: "mobile";
+}
+
+.drop-menu--is-visible {
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity var(--drop-menu-transition-duration), transform var(--drop-menu-transition-duration) var(--ease-out);
+}
+
+.drop-menu__inner {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.drop-menu__close-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: var(--drop-menu-item-height);
+  text-align: center;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+  transition: 0.3s;
+  margin-top: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+}
+.drop-menu__close-btn:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.drop-menu__list .drop-menu__list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.drop-menu__list {
+  transition: var(--drop-menu-transition-duration) var(--ease-out);
+}
+.drop-menu__list.drop-menu__list--in, .drop-menu__list.drop-menu__list--out {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0%);
+}
+.drop-menu__list.drop-menu__list--out > li > .drop-menu__search,
+.drop-menu__list.drop-menu__list--out > li > .drop-menu__btn,
+.drop-menu__list.drop-menu__list--out > li > .drop-menu__link {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.drop-menu__search-input,
+.drop-menu__btn,
+.drop-menu__link {
+  height: var(--drop-menu-item-height);
+  line-height: var(--drop-menu-item-height);
+  width: 100%;
+  padding: 0 var(--space-xs);
+}
+
+.drop-menu__search,
+.drop-menu__search-input,
+.drop-menu__btn,
+.drop-menu__link {
+  transition: background 0.2s, color 0.2s, transform var(--drop-menu-transition-duration) var(--ease-out), opacity var(--drop-menu-transition-duration), visibility var(--drop-menu-transition-duration);
+}
+
+.drop-menu__search {
+  position: relative;
+}
+
+.drop-menu__search-input {
+  padding-left: calc(var(--space-xs) + 1em + var(--space-xxxs));
+}
+.drop-menu__search-input::-webkit-search-decoration, .drop-menu__search-input::-webkit-search-cancel-button, .drop-menu__search-input::-webkit-search-results-button, .drop-menu__search-input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+.drop-menu__search-input::-ms-clear, .drop-menu__search-input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.drop-menu__search-input:focus {
+  outline: none;
+}
+.drop-menu__search-input:focus + .drop-menu__search-icon {
+  color: var(--color-primary);
+}
+
+.drop-menu__search-icon {
+  position: absolute;
+  left: var(--space-xs);
+  top: calc(50% - 0.5em);
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.drop-menu--searching .drop-menu__search-item ~ * {
+  display: none;
+}
+
+.drop-menu__btn,
+.drop-menu__link {
+  cursor: pointer;
+  min-width: 0;
+}
+.drop-menu__btn > *,
+.drop-menu__link > * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.drop-menu__btn:focus,
+.drop-menu__link:focus {
+  outline: none;
+  color: var(--color-primary);
+}
+.drop-menu__btn:hover,
+.drop-menu__link:hover {
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.075);
+}
+.drop-menu__btn:active,
+.drop-menu__link:active {
+  background-color: hsla(var(--color-contrast-higher-h), var(--color-contrast-higher-s), var(--color-contrast-higher-l), 0.1);
+}
+
+.drop-menu__btn {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drop-menu__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.drop-menu:not(.drop-menu--searching) .drop-menu__search-list {
+  display: none;
+}
+
+.drop-menu__search-list {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 48rem) {
+  .drop-menu {
+    min-height: 0;
+    max-width: var(--drop-menu-width-desktop);
+    border-radius: var(--radius-md);
+  }
+  .drop-menu::before {
+    content: "desktop";
+  }
+  .drop-menu__inner {
+    width: 100%;
+    flex-grow: 0;
+  }
+  .drop-menu__close-btn {
+    display: none;
+  }
+}
